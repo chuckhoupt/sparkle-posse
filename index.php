@@ -44,7 +44,7 @@ function appVersionBeta($ver) {
 	return isset($appVersion_desc[$ver]) ? $appVersion_desc[$ver] : $ver;
 }
 
-	exec("zgrep --no-filename osVersion $(ls $log_path/access.log.*.gz | tail -7)", $output);
+	exec("zgrep --no-filename osVersion $(ls $log_path/access.log.2* | tail -8) $log_path/access.log", $output);
 //print_r($output);	
 	foreach ($output as &$line) {
 		preg_match('/^([\d\.]+).*xml\?([^ ]+)/', $line, $match);
@@ -86,7 +86,7 @@ function appVersionBeta($ver) {
 
 <HR STYLE="clear: both">
 <P>
-Xynk Beta users active in the last 7 days (excluding today).
+Xynk Beta users active in the last 7 days.
 
 </P>
 <P>
