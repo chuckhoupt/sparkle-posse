@@ -1,7 +1,13 @@
+<? 
+	$log_path = preg_match('/.local$/', $_SERVER['HTTP_HOST'])
+		? "../testlogs/"
+		: "~/logs/xynkapp.com/http";
+?>
 <!DOCTYPE html>
 <HTML>
 <HEAD>
 <META CHARSET=utf-8>
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1">
 <TITLE>Xynk Beta has a Posse</TITLE>
 <STYLE>
 
@@ -38,15 +44,13 @@ function appVersionBeta($ver) {
 	return isset($appVersion_desc[$ver]) ? $appVersion_desc[$ver] : $ver;
 }
 
-	exec("zgrep --no-filename osVersion $(ls ~/logs/xynkapp.com/http/access.log.*.gz | tail -7)", $output);
+	exec("zgrep --no-filename osVersion $(ls $log_path/access.log.*.gz | tail -7)", $output);
 //print_r($output);	
 	foreach ($output as &$line) {
 		preg_match('/^([\d\.]+).*xml\?([^ ]+)/', $line, $match);
 		array_shift($match);
-		$ip_query[] = implode("\t", $match);
+		$profiles[] = $match;
 	}
-	$unique_ip_query = array_unique($ip_query);
-	sort($unique_ip_query);
 ?>
 </PRE>
 
@@ -55,10 +59,9 @@ function appVersionBeta($ver) {
 
 
 <?
-	foreach ($unique_ip_query as &$line) :
-		$match = explode("\t", $line);
-		$ip = $match[0];
-		parse_str($match[1]);
+	foreach ($profiles as &$p) :
+		$ip = $p[0];
+		parse_str($p[1]);
 		
 		$ipname = preg_replace('/^.*\.([^\.]+\.[^\.]+\.[^\.]+\.[^\.]+)$/', '$1',  gethostbyaddr($ip));
 ?>
