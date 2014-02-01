@@ -67,16 +67,16 @@ function appVersionBeta($ver) {
 ?>
 
 <DIV CLASS="member">
-<DIV CLASS="version"><?= appVersionBeta($appVersion) ?></DIV>
-<IMG CLASS="mac" SRC="mac/<?= $model ?>.png">
-<IMG CLASS="os" SRC="os/<?= preg_replace('/\.\d+$/', '', $osVersion) ?>.png">
-<DIV CLASS="ip">
-<?= $cputype_desc[$cputype] ?> 
-<?= $ncpu ?>-Core,
-<?= floor($ramMB/1000) ?> GB
-<br>
-<?= $ipname ?>
-</DIV>
+	<DIV CLASS="version"><?= appVersionBeta($appVersion) ?></DIV>
+	<IMG CLASS="mac" SRC="mac/<?= $model ?>.png">
+	<IMG CLASS="os" SRC="os/<?= preg_replace('/\.\d+$/', '', $osVersion) ?>.png">
+	<DIV CLASS="ip">
+		<?= $cputype_desc[$cputype] ?> 
+		<?= $ncpu ?>-Core,
+		<?= floor($ramMB/1000) ?> GB
+		<br>
+		<?= $ipname ?>
+	</DIV>
 </DIV>
 
 <?				
@@ -87,9 +87,10 @@ function appVersionBeta($ver) {
 <HR STYLE="clear: both">
 <P>
 Xynk Beta users active in the last 7 days (excluding today).
+
 </P>
 <P>
-<STRONG>Explaination:</STRONG> The Sparkle Update framework sends detailed profile information at most once a week, even if the app is launched more frequently. Therefore, each profile received in any 7 day stretch is guarenteed to represent a unique user/install of the app (techincally, a unique preference file, which hasn't been manually tampered with).
+<STRONG>Explanation:</STRONG> The Sparkle Update framework sends detailed profile information at most once a week, even if the app is launched more frequently. Therefore, each profile received in any 7 day stretch is guaranteed to represent a unique user/install of the app (technically, a unique preference file, which hasn't been manually tampered with).
 </P>
 
 <!--
