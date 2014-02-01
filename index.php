@@ -39,6 +39,13 @@ $appVersion_desc = array (
 	"629" => "β3"
 );
 
+$osShortVersion_link = array (
+	"10.6" => "http://en.wikipedia.org/wiki/Mac_OS_X_Snow_Leopard#Release_history",
+	"10.7" => "http://en.wikipedia.org/wiki/Mac_OS_X_Lion#Release_history",
+	"10.8" => "http://en.wikipedia.org/wiki/OS_X_Mountain_Lion#Release_history",
+	"10.9" => "http://en.wikipedia.org/wiki/OS_X_Mavericks#Releases",
+);
+
 function appVersionBeta($ver) {
 	global $appVersion_desc;
 	return isset($appVersion_desc[$ver]) ? $appVersion_desc[$ver] : $ver;
@@ -64,12 +71,19 @@ function appVersionBeta($ver) {
 		parse_str($p[1]);
 		
 		$ipname = preg_replace('/^.*\.([^\.]+\.[^\.]+\.[^\.]+\.[^\.]+)$/', '$1',  gethostbyaddr($ip));
+		$osShortVersion = preg_replace('/\.\d+$/', '', $osVersion);
 ?>
 
 <DIV CLASS="member">
-	<DIV CLASS="version"><?= appVersionBeta($appVersion) ?></DIV>
-	<IMG CLASS="mac" SRC="mac/<?= $model ?>.png">
-	<IMG CLASS="os" SRC="os/<?= preg_replace('/\.\d+$/', '', $osVersion) ?>.png">
+	<A HREF="https://cortex.bcybernetics.com/websvn/log.php?repname=bc&path=%2FXynk%2F&isdir=1&showchanges=1&sr=<?= $appVersion ?>&er=1&max=40&search=">
+		<DIV CLASS="version" TITLE="<?= $appVersion ?>"><?= appVersionBeta($appVersion) ?></DIV>
+	</A>
+	<A HREF="http://www.everymac.com/ultimate-mac-lookup/?search_keywords=<?= $model ?>">
+		<IMG CLASS="mac" SRC="mac/<?= $model ?>.png" TITLE="<?= $model ?>">
+	</A>
+	<A HREF="<?= $osShortVersion_link[$osShortVersion] ?>">
+		<IMG CLASS="os" SRC="os/<?= $osShortVersion ?>.png" TITLE="<?= $osVersion ?>">
+	</A>
 	<DIV CLASS="ip">
 		<?= $cputype_desc[$cputype] ?> 
 		<?= $ncpu ?>-Core,
