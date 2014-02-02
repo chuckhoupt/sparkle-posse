@@ -14,7 +14,9 @@
 #logo { height: 336px; float: left; margin: 0 16px 16px 0; }
 .member { float: left; position: relative; background-color: #eee; border-radius: 15px; height: 160px; width: 160px; margin: 0 16px 16px 0;}
 .member .mac { position: absolute; z-index: 10; left: 40px; bottom: 40px; margin: auto;}
-.member .os { position: absolute;  top: 0; right: 0; width: 70px; }
+.member .os { position: absolute;  z-index: 5; top: 0; right: 0; width: 70px; }
+.member .retina { position: absolute;  top: 50px; right: 0; width: 70px; }
+.member .no { display: none; }
 .member .version { position: absolute; lop: 0; left: 0; width: 60px; text-align: center; line-height: 60px;
 font-size: 180%; background-color: white; border-radius: 41px; margin: 7px;}
 .member .ip { position: absolute; bottom:0; text-align: center; width: 100%; margin: auto; }
@@ -51,6 +53,18 @@ function appVersionBeta($ver) {
 	return isset($appVersion_desc[$ver]) ? $appVersion_desc[$ver] : $ver;
 }
 
+function hasRetinaDisplay($model) {
+	$retinaModels = array (
+		"MacBookPro10,1" => TRUE,
+		"MacBookPro10,2" => TRUE,
+		"MacBookPro11,1" => TRUE,
+		"MacBookPro11,2" => TRUE,
+		"MacBookPro11,3" => TRUE,
+	);
+	
+	return isset($retinaModels[$model]) ? "yes" : "no";
+}
+
 	exec("zgrep --no-filename osVersion $(ls $log_path/access.log.2* | tail -8) $log_path/access.log", $output);
 //print_r($output);	
 	foreach ($output as &$line) {
@@ -84,6 +98,7 @@ function appVersionBeta($ver) {
 	<A HREF="<?= $osShortVersion_link[$osShortVersion] ?>">
 		<IMG CLASS="os" SRC="os/<?= $osShortVersion ?>.png" TITLE="<?= $osVersion ?>">
 	</A>
+	<IMG CLASS="retina <?= hasRetinaDisplay($model) ?>" SRC="retina-icon.png" TITLE="retina">
 	<DIV CLASS="ip">
 		<?= $cputype_desc[$cputype] ?> 
 		<?= $ncpu ?>-Core,
