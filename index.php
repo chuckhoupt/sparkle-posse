@@ -13,6 +13,10 @@ $log_path = "demo-logs";
 
 $log_glob_pattern = "$log_path/access.log.2* $log_path/access.log";
 
+// 
+//$default_mode = 'weekly';
+//$default_mode = 'regulars';
+
 ?><!DOCTYPE html>
 <HTML>
 <HEAD>
@@ -51,6 +55,9 @@ overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 
 <PRE>
 <?
+
+$mode = $default_mode;
+
 $cputype_desc = array (
 	7 => "Intel"
 );
@@ -106,6 +113,8 @@ date_default_timezone_set("UTC");
 //print_r($profiles);
 
 
+switch ($mode) {
+case 'regulars':
 // filter to regulars
 	$observed = array();
 	foreach ($profiles as &$p) {
@@ -125,8 +134,10 @@ date_default_timezone_set("UTC");
 	
 	function multicount($o) { return $o["count"] > 1; }
 	$profiles = array_filter($observed, "multicount");
-
 //print_r($profiles);
+	break;
+case 'weekly':
+default:
 	$now = time();
 
 	function weekling($p) {
@@ -138,7 +149,9 @@ date_default_timezone_set("UTC");
 		return $p["time"] > $now - 24 * 60 * 60;
 	}
 	
-$profiles = array_filter($profiles, "weekling");
+	$profiles = array_filter($profiles, "weekling");
+	break;
+}
 //print_r(count($profiles));
 ?>
 </PRE>
