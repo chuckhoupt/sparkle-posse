@@ -23,11 +23,6 @@ $log_glob_pattern = "$log_path/access.log.2* $log_path/access.log";
 
 $mode = isset($default_mode) ? $default_mode : "weekly";
 
-$description = array (
-	"weekly" => "",
-	"regulars" => ""
-);
-
 $cputype_desc = array (
 	7 => "Intel"
 );
@@ -123,7 +118,8 @@ case 'weekly':
 }
 //print_r(count($profiles));
 
-$appName = reset($profiles)["appName"];
+$firstp = reset($profiles);
+$appName = $firstp["appName"];
 
 ?><!DOCTYPE html>
 <HTML>
