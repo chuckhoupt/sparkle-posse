@@ -2,8 +2,6 @@
 
 // Configuration
 
-$app = "";
-$appSite = "";
 $appLogo = "XynkBetaHasAPosse.png";
 
 $appLogo = "Validator-SAC.png";
@@ -20,49 +18,15 @@ $log_glob_pattern = "$log_path/access.log.2* $log_path/access.log";
 //$default_mode = 'weekly';
 //$default_mode = 'regulars';
 
-?><!DOCTYPE html>
-<HTML>
-<HEAD>
-<META CHARSET="utf-8">
-<META NAME="viewport" CONTENT="width=device-width, initial-scale=1">
-<TITLE>Validator S.A.C. has a Posse</TITLE>
-<SCRIPT SRC="//code.jquery.com/jquery-2.1.0.min.js"></SCRIPT>
-<STYLE>
-BODY {font: 100%/1.45 sans-serif;}
-.logo { height: 160px; width: 160px; float: left; margin: 0 16px 16px 0; }
-.double-size { height: 336px; width: 336px; }
-.member { float: left; position: relative; background-color: #eee; border-radius: 15px; overflow: hidden;
-height: 160px; width: 160px; margin: 0 16px 16px 0; font-size: 13px;}
-.member .mac { position: absolute; z-index: 10; left: 25%; bottom: 25%; width: 51.25%;}
-.member .os { position: absolute;  z-index: 5; top: 0%; right: 0%; width: 44%; }
-.member .retina { position: absolute;  top: 30%; right: 0; width: 44%; }
-.member .no { display: none; }
-.member .version { position: absolute; top: 0; left: 0; width: 38%; height: 38%; text-align: center; line-height: 60px;
-font-size: 120%; background-color: white; border-radius: 50%; margin: 3%;}
-.member .info { position: absolute; bottom:5%; text-align: center; width: 100%; margin: auto;
-overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+// Code
 
-/* For iPhone's, resize to fit 2 members across the screen. */
-@media screen and (max-device-width: 480px) {
 
-	BODY { margin-left: 8px; margin-right: 0; }
-	.logo { height: 148px; width: 148px; margin: 0 8px 8px 0; }
-	.double-size { height: 304px; width: 304px; }
-	.member { height: 148px; width: 148px; margin: 0 8px 8px 0; }
+$mode = isset($default_mode) ? $default_mode : "weekly";
 
-}
-
-</STYLE>
-</HEAD>
-<BODY>
-
-<H1>Validator-SAC "Regulars" over the last Month</H1>
-<P>(A "regular" is defined as 2+ identical weekly profiles collected in last 30 days)</P>
-
-<PRE>
-<?
-
-$mode = $default_mode;
+$description = array (
+	"weekly" => "",
+	"regulars" => ""
+);
 
 $cputype_desc = array (
 	7 => "Intel"
@@ -143,7 +107,6 @@ case 'regulars':
 //print_r($profiles);
 	break;
 case 'weekly':
-default:
 	$now = time();
 
 	function weekling($p) {
@@ -159,8 +122,54 @@ default:
 	break;
 }
 //print_r(count($profiles));
-?>
-</PRE>
+
+$appName = reset($profiles)["appName"];
+
+?><!DOCTYPE html>
+<HTML>
+<HEAD>
+<META CHARSET="utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1">
+<TITLE><?= $appName ?>.app has a Posse</TITLE>
+<SCRIPT SRC="//code.jquery.com/jquery-2.1.0.min.js"></SCRIPT>
+<STYLE>
+BODY {font: 100%/1.45 sans-serif;}
+.logo { height: 160px; width: 160px; float: left; margin: 0 16px 16px 0; }
+.double-size { height: 336px; width: 336px; }
+.member { float: left; position: relative; background-color: #eee; border-radius: 15px; overflow: hidden;
+height: 160px; width: 160px; margin: 0 16px 16px 0; font-size: 13px;}
+.member .mac { position: absolute; z-index: 10; left: 25%; bottom: 25%; width: 51.25%;}
+.member .os { position: absolute;  z-index: 5; top: 0%; right: 0%; width: 44%; }
+.member .retina { position: absolute;  top: 30%; right: 0; width: 44%; }
+.member .no { display: none; }
+.member .version { position: absolute; top: 0; left: 0; width: 38%; height: 38%; text-align: center; line-height: 60px;
+font-size: 120%; background-color: white; border-radius: 50%; margin: 3%;}
+.member .info { position: absolute; bottom:5%; text-align: center; width: 100%; margin: auto;
+overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+/* For iPhone's, resize to fit 2 members across the screen. */
+@media screen and (max-device-width: 480px) {
+
+	BODY { margin-left: 8px; margin-right: 0; }
+	.logo { height: 148px; width: 148px; margin: 0 8px 8px 0; }
+	.double-size { height: 304px; width: 304px; }
+	.member { height: 148px; width: 148px; margin: 0 8px 8px 0; }
+
+}
+
+</STYLE>
+</HEAD>
+<BODY>
+
+<H1>
+<?= $appName ?>.app
+<? switch ($mode): case "regulars": ?>
+"Regulars" over the last 30 days
+<? break; case "weekly": ?>
+users over the last Week
+<? break; endswitch; ?>
+</H1>
+<!-- <P>(A "regular" is defined as 2+ identical weekly profiles collected in last 30 days)</P> -->
 
 <DIV ID="grid">
 <IMG CLASS="logo <?= $appLogoClass ?>" SRC="<?= $appLogo ?>">
