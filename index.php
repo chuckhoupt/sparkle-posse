@@ -8,6 +8,9 @@ $appLogo = "XynkBetaHasAPosse.png";
 
 $appLogo = "Validator-SAC.png";
 
+// 
+//$appLogoClass="double-size";
+
 $log_path = "demo-logs";
 // $log_path = "~/logs/xynkapp.com/http";
 
@@ -26,7 +29,8 @@ $log_glob_pattern = "$log_path/access.log.2* $log_path/access.log";
 <SCRIPT SRC="//code.jquery.com/jquery-2.1.0.min.js"></SCRIPT>
 <STYLE>
 BODY {font: 100%/1.45 sans-serif;}
-#logo { height: 160px; width: 160px; float: left; margin: 0 16px 16px 0; }
+.logo { height: 160px; width: 160px; float: left; margin: 0 16px 16px 0; }
+.double-size { height: 336px; width: 336px; }
 .member { float: left; position: relative; background-color: #eee; border-radius: 15px; overflow: hidden;
 height: 160px; width: 160px; margin: 0 16px 16px 0; font-size: 13px;}
 .member .mac { position: absolute; z-index: 10; left: 25%; bottom: 25%; width: 51.25%;}
@@ -42,6 +46,8 @@ overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 @media screen and (max-device-width: 480px) {
 
 	BODY { margin-left: 8px; margin-right: 0; }
+	.logo { height: 148px; width: 148px; margin: 0 8px 8px 0; }
+	.double-size { height: 304px; width: 304px; }
 	.member { height: 148px; width: 148px; margin: 0 8px 8px 0; }
 
 }
@@ -157,7 +163,7 @@ default:
 </PRE>
 
 <DIV ID="grid">
-<IMG ID="logo" SRC="<?= $appLogo ?>">
+<IMG CLASS="logo <?= $appLogoClass ?>" SRC="<?= $appLogo ?>">
 
 
 <?
