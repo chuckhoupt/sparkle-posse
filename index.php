@@ -205,7 +205,7 @@ default:
 $(function() {
 	$('.info').each(function(i, info) {
 		if (i > 50) return;
-		$.ajax('//ip-api.com/json/'+$('.address', info).text())
+		$.ajax('http://ip-api.com/json/'+$('.address', info).text())
 		 .done(function (geo) {
 		 	var d = [];
 		 	if (geo.city) d.push(geo.city);
