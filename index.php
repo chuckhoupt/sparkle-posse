@@ -63,6 +63,54 @@ function hasRetinaDisplay($model) {
 	return isset($retinaModels[$model]) ? "yes" : "no";
 }
 
+/*
+
+See: https://www.apple.com/osx/specs/
+*/
+function langName($code) {
+	$name = array (
+		"en" => "English - 英語",
+		"en-US" => "U.S. English - 'Merican!",
+		"en-CA" => "Canadian English - Eh?",
+		"en-GB" => "British English - What Ho!",
+		"en-AU" => "Australian English - G'Day!",
+		"ja" => "日本語 - Japanese",
+		"fr" => "Français - French",
+		"de" => "Deutsch - German",
+		"es" => "Español - Spanish",
+		"it" => "Italiano - Italian",
+		"nl" => "Nederlands - Dutch",
+		"sv" => "Svenska - Swedish",
+		"da" => "Dansk - Danish",
+		"no" => "Norsk Bokmål - Norwegian Bokmål",
+		"fi" => "Suomi - Finnish",
+		"zh_TW" => "繁體中文 - Chinese (Traditional)",
+		"zh_CN" => "简体中文 - Chinese (Simplified)",
+		"ko" => "한국어 - Korean",
+		"pt" => "Português (Brasil) - Portuguese (Brazil)",
+		"pt_PT" => "Português (Portugal) - Portuguese (Portugal)",
+		"ru" => "Pусский - Russian",
+		"pl" => "Polski - Polish",
+		"cs" => "Čeština - Czech",
+		"tr" => "Türkçe - Turkish",
+		"hu" => "Magyar - Hungarian",
+		"ar" => "العربية - Arabic",
+		"ca" => "Català - Catalan",
+		"hr" => "Hrvatski - Croatian",
+		"el" => "Ελληνικά - Greek",
+		"he" => "עברית - Hebrew",
+		"ro" => "Română - Romanian",
+		"sk" => "Slovenčina - Slovak",
+		"th" => "ไทย - Thai",
+		"uk" => "Українська - Ukrainian",
+		"ms" => "Bahasa Melayu - Malay",
+		"id" => "Bahasa Indonesia - Indonesian",
+		"vi" => "Tiếng Việt - Vietnamese",
+	);
+
+	return isset($name[$code]) ? $name[$code] : $code;	
+}
+
 	exec("zgrep --no-filename 'osVersion.*Sparkle' " . $log_glob_pattern, $output);
 //print_r($output);	
 
@@ -136,10 +184,12 @@ BODY {font: 100%/1.45 sans-serif;}
 height: 160px; width: 160px; margin: 0 16px 16px 0; font-size: 13px;}
 .member .mac { position: absolute; z-index: 10; left: 25%; bottom: 25%; width: 51.25%;}
 .member .os { position: absolute;  z-index: 5; top: 0%; right: 0%; width: 44%; }
-.member .retina { position: absolute;  top: 30%; right: 0; width: 44%; }
+.member .retina { position: absolute;  top: 30%; right: 0; width: 44%; height: 44%; }
+.member .language { position: absolute; top: 30%; left: 0; width: 50%; height: 37%; line-height: 60px;
+overflow: hidden; white-space: nowrap; font-size: 20px; color: gray; margin: 3%; padding: 1%; border-radius: 50%;}
 .member .no { display: none; }
 .member .version { position: absolute; top: 0; left: 0; width: 38%; height: 38%; text-align: center; line-height: 60px;
-font-size: 120%; background-color: white; border-radius: 50%; margin: 3%;}
+font-size: 120%; background-color: white; border-radius: 50%; margin: 3%; z-index: 5;}
 .member .info { position: absolute; bottom:5%; text-align: center; width: 100%; margin: auto;
 overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 
@@ -178,6 +228,7 @@ users over the last Week
 //		$ipname = preg_replace('/^.*\.([^\.]+\.[^\.]+\.[^\.]+\.[^\.]+)$/', '$1',  gethostbyaddr($ip));
  $ipname = $ip;
 		$osShortVersion = preg_replace('/\.\d+$/', '', $osVersion);
+		$langName = langName($lang);
 ?>
 
 <DIV CLASS="member">
@@ -192,13 +243,13 @@ users over the last Week
 		<IMG CLASS="os" SRC="os/<?= $osShortVersion ?>.png" TITLE="<?= $osVersion ?>">
 	</A>
 	<IMG CLASS="retina <?= hasRetinaDisplay($model) ?>" SRC="retina-icon.png" TITLE="retina">
+	<DIV CLASS="language" TITLE="<?= $langName ?>"><?= $langName ?></DIV>
 	<DIV CLASS="info">
 		<?= $cputype_desc[$cputype] ?> 
 		<?= $ncpu ?>-Core,
 		<?= floor($ramMB/1000) ?> GB
 		<BR>
-		<SPAN CLASS="address"><?= $ipname ?></SPAN>:
-		<SPAN CLASS="orginization"></SPAN>
+		<SPAN CLASS="address"><?= $ipname ?></SPAN>
 	</DIV>
 </DIV>
 
@@ -213,21 +264,46 @@ users over the last Week
 <STRONG>Explanation:</STRONG> The Sparkle Update framework sends detailed profile information at most once a week, even if the app is launched more frequently. Therefore, each profile received in any 7 day stretch is guaranteed to represent a unique user/install of the app (technically, a unique preference file, which hasn't been manually tampered with).
 </P>
 <SCRIPT>
-$(function() {
-	$('.info').each(function(i, info) {
-		if (i > 50) return;
+$(document).ready(function() {
+
+
+$('.info').each(function(i, info) {
+	setTimeout(function() {
+//		$.ajax('/ip-api-example.json?'+$('.address', info).text())
 		$.ajax('http://ip-api.com/json/'+$('.address', info).text())
 		 .done(function (geo) {
-		 	var d = [];
-		 	if (geo.city) d.push(geo.city);
-		 	if (geo.countryCode == 'US' && geo.region) d.push(geo.region);
-		 	d.push((d.length == 0) ? geo.country : geo.countryCode);
-			$('.address', info).text(d.join(", "))
-			.attr('TITLE', JSON.stringify(geo, undefined, 2));
-			$('.orginization', info).text(geo.org);
+			var d = [];
+			if (geo.city) d.push(geo.city);
+			if (geo.countryCode == 'US' && geo.region) d.push(geo.region);
+			d.push((d.length == 0) ? geo.country : geo.countryCode);
+			var summary = d.join(", ") + ": " + geo.org;
+			var full = summary + "\n\n" + format(full_description, geo);
+			$('.address', info).text(summary);
+			$(info).attr('TITLE', full);
 
 		});
-	});
+	},
+	i*100);
+});
+
+var full_description ="\
+IP: {query}\n\
+Org: {org}\n\
+ISP: {isp}\n\
+AS: {as}\n\
+\n\
+City: {city}\n\
+Region: {regionName}\n\
+County: {country}\n\
+Post Code: {zip}\n\
+\n\
+Lat/Long: {lat}, {lon}\n\
+Timezone: {timezone}";
+
+function format(str, object) {
+	return str.replace(/{([^}]+)}/g, function(m, key) {return object[key]});
+}
+
 });
 </SCRIPT>
 
