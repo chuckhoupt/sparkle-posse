@@ -229,12 +229,13 @@ users over the last Week
  $ipname = $ip;
 		$osShortVersion = preg_replace('/\.\d+$/', '', $osVersion);
 		$langName = langName($lang);
+		$displayVersion = isset($p['appShortVersion']) ? $appShortVersion : $appVersion;
 ?>
 
 <DIV CLASS="member">
 	<!-- <A HREF="https://cortex.bcybernetics.com/websvn/log.php?repname=bc&path=%2FXynk%2F&isdir=1&showchanges=1&sr=<?= $appVersion ?>&er=1&max=40&search="> -->
-	<A HREF="http://habilis.net/validator-sac/#<?= $appVersion ?>">
-		<DIV CLASS="version" TITLE="<?= $appVersion ?>"><?= appVersionBeta($appVersion) ?></DIV>
+	<A HREF="#<?= $displayVersion ?>">
+		<DIV CLASS="version" TITLE="<?= $displayVersion ?>"><?= $displayVersion ?></DIV>
 	</A>
 	<A HREF="http://www.everymac.com/ultimate-mac-lookup/?search_keywords=<?= $model ?>">
 		<IMG CLASS="mac" SRC="mac/<?= $model ?>.png" TITLE="<?= $model ?>">
