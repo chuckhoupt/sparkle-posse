@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<META CHARSET="utf-8">
+		<META NAME="viewport" CONTENT="width=device-width, initial-scale=1">
+		<TITLE>{{appName}} has a Posse</TITLE>
+		<LINK REL="stylesheet" HREF="posse.css">
+		<LINK REL="stylesheet" HREF="//cdn.datatables.net/1.10.0-beta.2/css/jquery.dataTables.css">
+		<SCRIPT SRC="//code.jquery.com/jquery-1.8.2.min.js"></SCRIPT>
+		<SCRIPT SRC="//cdn.datatables.net/1.10.0-beta.2/js/jquery.dataTables.js"></SCRIPT>
+	</HEAD>
+	<BODY>
+	
+<TABLE CLASS="display">
+<CAPTION>System Profiles over last 30 days</CAPTION>
+<THEAD>
+<TR>
+	<TH>Time</TH>
+	<TH>IP</TH>
+	<TH>App</TH>
+	<TH>Version</TH>
+	<TH>Model</TH>
+	<TH>OS</TH>
+	<TH>Lang</TH>
+	<TH>Arch</TH>
+	<TH>CPU</TH>
+	<TH>Speed</TH>
+	<TH>RAM</TH>
+</TR>
+</THEAD>
+
+<TBODY>
+
+{{#members}}
+<TR>
+	<TD>{{time}}</TD>
+	<TD>{{ip}}</TD>
+	<TD>{{appName}}</TD>
+	<TD>{{displayVersion}}</TD>
+	<TD>{{modelInfo.desc}}</TD>
+	<TD>{{osVersion}}</TD>
+	<TD>{{lang}}</TD>
+	<TD>{{modelInfo.proc}}</TD>
+	<TD>{{ncpu}}</TD>
+	<TD>{{cpuFreqMHz}} MHz</TD>
+	<TD>{{ramGB}} GB</TD>
+</TR>
+{{/members}}
+</TBODY>
+
+</TABLE>
+
+	<SCRIPT>
+		$(document).ready(function() {
+			$('TABLE').dataTable({
+				paging: false,
+				columnDefs: [{
+					targets: 0,
+					render: function ( data ) {
+						console.log(data);
+						var d = new Date(parseInt(data, 10) * 1000);
+						return d.toDateString();
+					}
+                }]
+			});
+		});
+	</SCRIPT>
+	</BODY>
+</HTML>

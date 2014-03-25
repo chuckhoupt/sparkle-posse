@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<META CHARSET="utf-8">
+		<META NAME="viewport" CONTENT="width=device-width, initial-scale=1">
+		<TITLE>{{appName}} has a Posse</TITLE>
+		<SCRIPT SRC="//code.jquery.com/jquery-2.1.0.min.js"></SCRIPT>
+		<LINK REL="stylesheet" HREF="posse.css">
+	</HEAD>
+	<BODY>
+
+	{{#regulars}} <H1>{{appName}} "Regulars" over the last 30 days</H1>	{{/regulars}}
+	{{^regulars}} <H1>{{appName}} users over the last Week</H1>         {{/regulars}}
+
+	<!-- <P>(A "regular" is defined as 2+ identical weekly profiles collected in last 30 days)</P> -->
+	<UL>
+		<LI><A HREF="?mode=weekly">Weekly</A></LI>
+		<LI><A HREF="?mode=regulars">Regulars</A></LI>
+		<LI><A HREF="?template=table">Table View</A></LI>
+	</UL>
+	<DIV ID="grid">
+	{{#appLogo}}<IMG CLASS="logo {{appLogoClass}}" SRC="{{appLogo}}">{{/appLogo}}
+
+	{{#members}}
+	
+	<DIV CLASS="member">
+		<!-- <A HREF="https://cortex.bcybernetics.com/websvn/log.php?repname=bc&path=%2FXynk%2F&isdir=1&showchanges=1&sr=<?= $appVersion ?>&er=1&max=40&search="> -->
+		<A HREF="#{{displayVersion}}">
+			<DIV CLASS="version" TITLE="{{appName}} {{displayVersion}}">{{displayVersion}}</DIV>
+		</A>
+		<A HREF="http://www.everymac.com/ultimate-mac-lookup/?search_keywords={{model}}">
+			<IMG CLASS="mac" SRC="mac/{{model}}.png" TITLE="{{modelInfo.desc}}">
+		</A>
+		<A HREF="{{osInfo.link}}">
+			<IMG CLASS="os" SRC="os/{{osShortVersion}}.png" TITLE="{{osVersion}} - {{osInfo.codeName}}">
+		</A>
+		{{#modelInfo.retina}}<IMG CLASS="retina" SRC="retina-icon.png" TITLE="Retina Display">{{/modelInfo.retina}}
+		<DIV CLASS="language" TITLE="{{langName}}">{{langName}}</DIV>
+		<DIV CLASS="info">
+			{{modelInfo.proc}} {{ncpu}}-CPU, {{ramGB}} GB <BR>
+			<SPAN CLASS="address">{{ip}}</SPAN>
+		</DIV>
+	</DIV>
+
+	{{/members}}
+
+	</DIV>
+
+	<HR STYLE="clear: both">
+	<P>
+	<STRONG>Explanation:</STRONG> The Sparkle Update framework sends detailed profile information at most once a week, even if the app is launched more frequently. Therefore, each profile received in any 7 day stretch is guaranteed to represent a unique user/install of the app (technically, a unique preference file, which hasn't been manually tampered with).
+	</P>
+	<SCRIPT SRC="posse.js"></SCRIPT>
+	</BODY>
+</HTML>

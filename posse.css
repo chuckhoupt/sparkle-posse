@@ -1,0 +1,26 @@
+BODY {font: 100%/1.45 sans-serif;}
+.logo { height: 160px; width: 160px; float: left; margin: 0 16px 16px 0; }
+.double-size { height: 336px; width: 336px; }
+.member { float: left; position: relative; background-color: #eee; border-radius: 15px; overflow: hidden;
+height: 160px; width: 160px; margin: 0 16px 16px 0; font-size: 13px;}
+.member .mac { position: absolute; z-index: 10; left: 25%; bottom: 25%; width: 51.25%;}
+.member .os { position: absolute;  z-index: 5; top: 0%; right: 0%; width: 44%; }
+.member .retina { position: absolute;  top: 30%; right: 0; width: 44%; height: 44%; }
+.member .language { position: absolute; top: 30%; left: 0; width: 50%; height: 37%; line-height: 60px;
+overflow: hidden; white-space: nowrap; font-size: 20px; color: gray; margin: 3%; padding: 1%; border-radius: 50%;}
+.member .no { display: none; }
+.member .version { position: absolute; top: 0; left: 0; width: 38%; height: 38%; text-align: center; line-height: 60px;
+font-size: 120%; background-color: white; border-radius: 50%; margin: 3%; z-index: 5;}
+.member .info { position: absolute; bottom:5%; text-align: center; width: 100%; margin: auto;
+overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+/* For iPhone's, resize to fit 2 members across the screen. */
+@media screen and (max-device-width: 480px) {
+
+	BODY { margin-left: 8px; margin-right: 0; }
+	.logo { height: 148px; width: 148px; margin: 0 8px 8px 0; }
+	.double-size { height: 304px; width: 304px; }
+	.member { height: 148px; width: 148px; margin: 0 8px 8px 0; }
+
+}
+
