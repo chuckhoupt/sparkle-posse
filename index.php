@@ -34,7 +34,7 @@ $m = new Mustache_Engine;
 $mode = isset($_GET["mode"]) ? $_GET["mode"] : $default_mode;
 $template = isset($_GET["template"]) ? $_GET["template"] : $default_template;
 
-exec("zgrep --no-filename 'osVersion=.*Sparkle/\d.*' " . $log_glob_pattern, $output);
+exec("zgrep --no-filename 'osVersion=.*Sparkle/[0-9].*' " . $log_glob_pattern, $output);
 //print_r($output);	
 
 $profiles = [];
