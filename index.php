@@ -34,17 +34,18 @@ $m = new Mustache_Engine;
 $mode = isset($_GET["mode"]) ? $_GET["mode"] : $default_mode;
 $template = isset($_GET["template"]) ? $_GET["template"] : $default_template;
 
-exec("zgrep --no-filename 'osVersion.*Sparkle' " . $log_glob_pattern, $output);
+exec("zgrep --no-filename 'osVersion=.*Sparkle/\d.*' " . $log_glob_pattern, $output);
 //print_r($output);	
 
+$profiles = [];
 
-	foreach ($output as &$line) {
-		preg_match('/^([\d\.]+).*\[(.*)\].*xml\?([^ ]+)/', $line, $match);
-		parse_str($match[3], $p);
-		$p["ip"] = $match[1];
-		$p["time"] = strtotime($match[2]);
-		$profiles[] = new Profile($p);
-	}
+foreach ($output as &$line) {
+	preg_match('/^([\d\.]+).*\[(.*)\].*xml\?([^ ]+)/', $line, $match);
+	parse_str($match[3], $p);
+	$p["ip"] = $match[1];
+	$p["time"] = strtotime($match[2]);
+	$profiles[] = new Profile($p);
+}
 //print_r($profiles);
 
 
