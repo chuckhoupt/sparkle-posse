@@ -8,6 +8,7 @@
 		<LINK REL="stylesheet" HREF="//cdn.datatables.net/1.10.0-beta.2/css/jquery.dataTables.css">
 		<SCRIPT SRC="//code.jquery.com/jquery-1.8.2.min.js"></SCRIPT>
 		<SCRIPT SRC="//cdn.datatables.net/1.10.0-beta.2/js/jquery.dataTables.js"></SCRIPT>
+		<SCRIPT SRC="table2CSV.js"></SCRIPT>
 	</HEAD>
 	<BODY>
 	
@@ -48,6 +49,7 @@
 {{/members}}
 </TBODY>
 
+<BUTTON ID="csv">Export CSV</BUTTON>
 </TABLE>
 
 	<SCRIPT>
@@ -62,6 +64,10 @@
 						return d.toDateString();
 					}
                 }]
+			});
+			
+			$('#csv').click(function() {
+				$('TABLE').table2CSV();
 			});
 		});
 	</SCRIPT>
