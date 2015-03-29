@@ -49,6 +49,7 @@ public static $osInfoMap = [
 	"10.7" => ["codeName"=>"Lion", "link"=>"http://en.wikipedia.org/wiki/Mac_OS_X_Lion#Release_history"],
 	"10.8" => ["codeName"=>"Mountain Lion", "link"=>"http://en.wikipedia.org/wiki/OS_X_Mountain_Lion#Release_history"],
 	"10.9" => ["codeName"=>"Mavericks", "link"=>"http://en.wikipedia.org/wiki/OS_X_Mavericks#Releases"],
+	"10.10" => ["codeName"=>"Yosemite", "link"=>"http://en.wikipedia.org/wiki/OS_X_Yosemite#Releases"],
 ];
 
 // See: https://www.apple.com/osx/specs/
@@ -113,6 +114,8 @@ public static $modelInfoMap = [
 "MacBookAir5,2" => [	"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Air 13\""],
 "MacBookAir6,1" => [	"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Air 11\""],
 "MacBookAir6,2" => [	"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Air 13\""],
+"MacBookAir7,1" => [	"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Air 13\""],
+"MacBookAir7,2" => [	"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Air 13\""],
 "MacBookPro1,1" => [	"retina"=>FALSE, 	"proc"=>"Core i1", 	"desc"=>"MacBook Pro 15\""],
 "MacBookPro1,2" => [	"retina"=>FALSE, 	"proc"=>"Core i1", 	"desc"=>"MacBook Pro 17\""],
 "MacBookPro2,1" => [	"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"MacBook Pro 17\""],
@@ -137,6 +140,7 @@ public static $modelInfoMap = [
 "MacBookPro11,1" => [	"retina"=>TRUE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Pro 13\""],
 "MacBookPro11,2" => [	"retina"=>TRUE, 	"proc"=>"Core i7", 	"desc"=>"MacBook Pro 15\""],
 "MacBookPro11,3" => [	"retina"=>TRUE, 	"proc"=>"Core i7", 	"desc"=>"MacBook Pro 15\""],
+"MacBookPro12,1" => [	"retina"=>TRUE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Pro 13\""],
 "MacPro1,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
 "MacPro2,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
 "MacPro3,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
@@ -152,6 +156,7 @@ public static $modelInfoMap = [
 "Macmini5,3" => [		"retina"=>FALSE, 	"proc"=>"Core i7", 	"desc"=>"Mac mini"],
 "Macmini6,1" => [		"retina"=>FALSE, 	"proc"=>"Core i5", 	"desc"=>"Mac mini"],
 "Macmini6,2" => [		"retina"=>FALSE, 	"proc"=>"Core i7", 	"desc"=>"Mac mini"],
+"Macmini7,1" => [		"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"Mac mini"],
 "Xserve1,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Xserve"],
 "Xserve2,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Xserve"],
 "Xserve3,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Xserve"],
@@ -174,6 +179,8 @@ public static $modelInfoMap = [
 "iMac14,1" => [			"retina"=>FALSE, 	"proc"=>"Core i5", 	"desc"=>"iMac 21.5\""],
 "iMac14,2" => [			"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"iMac 27\""],
 "iMac14,3" => [			"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"iMac 21.5\""],
+"iMac14,4" => [			"retina"=>FALSE, 	"proc"=>"Core i5", 	"desc"=>"iMac 21.5\""],
+"iMac15,1" => [			"retina"=>TRUE, 	"proc"=>"Core i5/i7", 	"desc"=>"iMac 27\""],
 
 "VMware7,1" => [		"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"VMWare Virtual Machine"],
 ];
