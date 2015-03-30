@@ -27,7 +27,7 @@ AS: {as}\n\
 \n\
 City: {city}\n\
 Region: {regionName}\n\
-County: {country}\n\
+Country: {country}\n\
 Post Code: {zip}\n\
 \n\
 Lat/Long: {lat}, {lon}\n\
