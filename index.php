@@ -2,12 +2,7 @@
 
 // Configuration
 
-$appLogo = "XynkBetaHasAPosse.png";
-
-$appLogo = "Validator-SAC.png";
-
-// 
-//$appLogoClass="double-size";
+$appIcon = "Validator-SAC.png";
 
 $log_path = "demo-logs";
 // $log_path = "~/logs/xynkapp.com/http";
@@ -99,7 +94,8 @@ $firstp = reset($profiles);
 $appName = $firstp->appName;
 
 $d = [
-	regulars => ($mode == "regulars"), 
+	regulars => ($mode == "regulars"),
+	appIcon => $appIcon,
 	appName => $firstp->appName,
 	members => $profiles
 ];

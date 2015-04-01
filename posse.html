@@ -4,8 +4,8 @@
 		<META CHARSET="utf-8">
 		<META NAME="viewport" CONTENT="width=device-width, initial-scale=1">
 		<TITLE>{{appName}} has a Posse</TITLE>
-		<SCRIPT SRC="//code.jquery.com/jquery-2.1.3.min.js"></SCRIPT>
 		<LINK REL="stylesheet" HREF="posse.css">
+		<SCRIPT SRC="//code.jquery.com/jquery-2.1.3.min.js"></SCRIPT>
 	</HEAD>
 	<BODY>
 
@@ -19,7 +19,45 @@
 		<LI><A HREF="?template=table">Table View</A></LI>
 	</UL>
 	<DIV ID="grid">
-	{{#appLogo}}<IMG CLASS="logo {{appLogoClass}}" SRC="{{appLogo}}">{{/appLogo}}
+
+<svg class="logo double-size" viewBox="0 0 605 640">
+	<defs>
+	<filter id="pictureFilter">
+		<feTurbulence type="fractalNoise" baseFrequency="0.15" numOctaves="2"
+		result="turbulence_3" dataHfilterId="3" />
+		<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="turbulence_3" scale="20" />
+<feColorMatrix type="luminanceToAlpha" />
+		<feConvolveMatrix order="3" kernelMatrix="-1 -1 -1 0 0 0 1 2 1" />
+		<feConvolveMatrix order="3" kernelMatrix="-1 -1 -1 0 0 0 1 2 1" />
+<!--
+<feDiffuseLighting diffuseConstant="1" surfaceScale="10" result="diffuse3">
+<feDistantLight elevation="28" azimuth="90" />
+</feDiffuseLighting>
+<feComposite operator="in" in2="inputTo_3" />
+-->
+<!--
+		<feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2"
+		result="turbulence_3" dataHfilterId="3" />
+		<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="turbulence_3" scale="20" />
+		<feColorMatrix type="saturate" values="0" />
+		<feColorMatrix type="luminanceToAlpha" />
+		<feConvolveMatrix order="3" kernelMatrix="-1 -2 -1 0 0 0 1 2 1" />
+		<feConvolveMatrix order="3" kernelMatrix="-1 -2 -1 0 0 0 1 2 1" />
+-->
+	</filter>
+	</defs>
+	<desc>{{appName}} has a Posse</desc>
+ 	<image xlink:href="{{appLogo}}" x="170" y="150" height="500px" width="500px" filter="url(#pictureFilter)"
+ 		transform="rotate(-15 420 400)"/>
+ 	<!--  -->
+	<image xlink:href="posse-frame.png" x="0" y="0" height="640px" width="605px"/>
+	<g font-family="Cracked, sans-serif">
+		<text x="42" y="105" font-size="70px">{{appName}}</text>
+		<text x="365" y="97" font-size="50px">48,</text>
+		<text x="402" y="76" font-size="30px">px</text>
+		<text x="445" y="97" font-size="50px">11.5 MB</text>
+	</g>
+</svg>
 
 	{{#members}}
 	
