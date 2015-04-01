@@ -51,11 +51,16 @@
  		transform="rotate(-15 420 400)"/>
  	<!--  -->
 	<image xlink:href="posse-frame.png" x="0" y="0" height="640px" width="605px"/>
-	<g font-family="Cracked, sans-serif">
-		<text x="42" y="105" font-size="70px">{{appName}}</text>
-		<text x="365" y="97" font-size="50px">48,</text>
-		<text x="402" y="76" font-size="30px">px</text>
-		<text x="445" y="97" font-size="50px">11.5 MB</text>
+	<g font-family="Piedra, sans-serif">
+		<text x="42" y="105" font-size="60px">
+			<tspan style="font-weight: bold; text-transform: uppercase;">{{ringName.0}}</tspan>
+			<tspan x="42" dy="1em">{{ringName.1}}</tspan>
+			<tspan x="42" dy="1em">{{ringName.2}}</tspan>
+		</text>
+		<text x="365" y="97" font-size="40px">
+			48,<tspan dx="-6" font-size="30px" baseline-shift="super">px</tspan>
+			11.5 MB
+		</text>
 	</g>
 </svg>
 

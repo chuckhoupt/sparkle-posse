@@ -2,12 +2,18 @@
 
 // Configuration
 
-$appIcon = "Validator-SAC.png";
-
 $log_path = "demo-logs";
 // $log_path = "~/logs/xynkapp.com/http";
-
 $log_glob_pattern = "$log_path/access.log.2* $log_path/access.log";
+
+$appIcon = "Validator-SAC.png";
+
+// note use of non-breaking spaces
+$ringName = [
+"Validator",
+"   the",
+" S.A.C."
+];
 
 // 
 $default_mode = 'weekly';
@@ -92,11 +98,13 @@ usort($profiles, "rtime");
 
 $firstp = reset($profiles);
 $appName = $firstp->appName;
+$ringName = isset($ringName) ? $ringName : [$appName, "", ""];
 
 $d = [
 	regulars => ($mode == "regulars"),
 	appIcon => $appIcon,
 	appName => $firstp->appName,
+	ringName => $ringName,
 	members => $profiles
 ];
 //print_r($d);
