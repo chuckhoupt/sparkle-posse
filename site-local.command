@@ -25,9 +25,16 @@ fi
 
 sleep 1
 
-open $URL
+# Open a window, if one isn't found
+osascript -e "tell application \"Safari\" to if ((documents whose URL starts with \"$URL\") = {}) then open location \"$URL\""
 
-fswatch $SITEROOT "osascript -e 'tell application \"Safari\" to do JavaScript \"location.reload(true)\" in documents whose URL starts with \"$URL\"'" &
+# Auto-refresh using fswatch, if available...
+if which fswatch
+then
+	fswatch -o "$SITEROOT" | xargs -n1 -I{} osascript -e "tell application \"Safari\" to do JavaScript \"location.reload(true)\" in documents whose URL starts with \"$URL\"" > /dev/null &
+else
+	echo "NOTE: Install fswatch (e.g. brew install fswatch) to allow auto-refresh"
+fi
 
 # Tail logs, colorizing lines that start with '[' (i.e. error log lines)
 tail -q -f -n 0 /var/log/apache2/error_log /var/log/apache2/access_log \
