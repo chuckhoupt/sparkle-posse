@@ -25,17 +25,13 @@ $default_template = 'posse';
 
 // Code
 
+require_once 'vendor/autoload.php';
+
 require 'Profile.php';
 
-require 'Mustache/Autoloader.php';
-
-
 if (isset($geoip_city_db)) {
-	require_once 'vendor/autoload.php';
 	$g = new GeoIp2\Database\Reader($geoip_city_db);
 }
-
-Mustache_Autoloader::register();
 
 date_default_timezone_set("UTC");
 
@@ -44,6 +40,7 @@ $m = new Mustache_Engine;
 $mode = isset($_GET["mode"]) ? $_GET["mode"] : $default_mode;
 $template = isset($_GET["template"]) ? $_GET["template"] : $default_template;
 
+// Extract the profiles -- zgrep does all the heavy lifting
 exec("zgrep --no-filename 'osVersion=.*Sparkle/[0-9].*' " . $log_glob_pattern, $output);
 //print_r($output);	
 
@@ -101,6 +98,7 @@ case 'weekly':
 if (isset($g)) {
 	foreach ($profiles as &$p) {
 		$r = $g->city($p->ip);
+		
 		$p->geo = [
 			"org" => $r->traits->organization,
 			"city" => $r->city->name,
@@ -115,6 +113,7 @@ if (isset($g)) {
 			"timezone" => $r->location->timeZone,
 		];
 
+		// Ca
 		$d = array();
 		if ($p->geo['city']) $d[] = $p->geo['city'];
 		if ($p->geo['countryCode'] == 'US' && $p->geo['region']) $d[] = $p->geo['region'];
