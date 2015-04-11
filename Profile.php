@@ -185,6 +185,38 @@ public static $modelInfoMap = [
 "VMware7,1" => [		"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"VMWare Virtual Machine"],
 ];
 
+// For demos, generate a list of profiles with all models, OSes, languages and random IPs
+public static function studio() {
+	function r() { return rand(0,255); }
+	
+	$modelKeys = array_keys(Profile::$modelInfoMap);
+	$osKeys = array_keys(Profile::$osInfoMap);
+	$langKeys = array_keys(Profile::$langNameMap);
+	$now = time();
+	
+	$members = [];
+	
+	for ($i = 0; $i < count($modelKeys); $i++) {
+		$members[] = new Profile([
+			"model" => $modelKeys[$i],
+			"lang"=> $langKeys[$i % count($langKeys)],
+			"osVersion" => $osKeys[$i % count($osKeys)] . ".0",
+			"cputype" => "7",
+			"cpu64bit" => "1",
+			"cpusubtype" => "4",
+			"ncpu"=>"8",
+			"appName" => "Sparkle",
+			"appVersion"=>"1.1",
+			"cpuFreqMHz"=>"2200", "ramMB"=>"16384",
+			"ip" => r().".".r().".".r().".".r(),
+			"time" => $now
+		]);
+	}
+	
+	return $members;
+}
+
+
 }
 
 ?>
