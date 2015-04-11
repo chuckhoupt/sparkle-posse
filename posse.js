@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-$('.info').each(function(i, info) {
+$('.info:has(.address)').each(function(i, info) {
 	setTimeout(function() {
 		$.ajax('http://ip-api.com/json/'+$('.address', info).text())
 		 .done(function (geo) {

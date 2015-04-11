@@ -19,6 +19,8 @@ $ringName = [
 $default_mode = 'weekly';
 $default_template = 'posse';
 
+//$geoip_city_db = '/usr/local/var/GeoIP/GeoLite2-City.mmdb';
+
 //$default_mode = 'regulars';
 
 // Code
@@ -26,6 +28,13 @@ $default_template = 'posse';
 require 'Profile.php';
 
 require 'Mustache/Autoloader.php';
+
+
+if (isset($geoip_city_db)) {
+	require_once 'vendor/autoload.php';
+	$g = new GeoIp2\Database\Reader($geoip_city_db);
+}
+
 Mustache_Autoloader::register();
 
 date_default_timezone_set("UTC");
@@ -87,6 +96,33 @@ case 'weekly':
 	
 	$profiles = array_filter($profiles, "weekling");
 	break;
+}
+
+if (isset($g)) {
+	foreach ($profiles as &$p) {
+		$r = $g->city($p->ip);
+		$p->geo = [
+			"org" => $r->traits->organization,
+			"city" => $r->city->name,
+			"region" => $r->mostSpecificSubdivision->isoCode,
+			"regionName" => $r->mostSpecificSubdivision->name,
+			"country" => $r->country->name,
+			"countryCode" => $r->country->isoCode,
+			"zip" => $r->postal->code,
+			"continent" => $r->continent->name,
+			"lat" => $r->location->latitude,
+			"lon" => $r->location->longitude,
+			"timezone" => $r->location->timeZone,
+		];
+
+		$d = array();
+		if ($p->geo['city']) $d[] = $p->geo['city'];
+		if ($p->geo['countryCode'] == 'US' && $p->geo['region']) $d[] = $p->geo['region'];
+		$d[] = count($d) ? $p->geo['countryCode'] : $p->geo['country'];
+		$summary = implode(", ", $d);
+		if (! $summary) $summary = "unknown";
+		$p->geo['summary'] = $summary;
+	}
 }
 
 function rtime($a, $b) {

@@ -80,7 +80,17 @@
 		<DIV CLASS="language" TITLE="{{langName}}">{{langName}}</DIV>
 		<DIV CLASS="info">
 			{{modelInfo.proc}} {{ncpu}}-CPU, {{ramGB}} GB <BR>
-			<SPAN CLASS="address">{{ip}}</SPAN>
+			{{^geo}}<SPAN CLASS="address">{{ip}}</SPAN>{{/geo}}
+			{{#geo}}<SPAN TITLE="{{summary}}
+
+City: {{city}}
+Region: {{regionName}}
+Country: {{country}}
+Post Code: {{zip}}
+
+Lat/Long: {{lat}}, {{lon}}
+Timezone: {{timezone}}";
+">{{summary}}</SPAN>{{/geo}}
 		</DIV>
 	</DIV>
 
