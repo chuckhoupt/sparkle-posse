@@ -1,39 +1,34 @@
 <? 
+
 error_reporting(-1);
-// Configuration
-/*
 
-$log_path = "demo-logs";
-// $log_path = "~/logs/xynkapp.com/http";
-//$log_glob_pattern = "$log_path/access.log.2* $log_path/access.log";
-
-$appIcon = "Validator-SAC.png";
-
-// note use of non-breaking spaces
-$ringName = [
-"Validator",
-"   the",
-" S.A.C."
-];
-*/
 
 // 
 $default_mode = 'weekly';
 $default_template = 'posse';
-
-$geoip_city_db = '/usr/local/var/GeoIP/GeoLite2-City.mmdb';
 
 //$default_mode = 'regulars';
 
 // Code
 
 require_once 'vendor/autoload.php';
+require_once 'Profile.php';
 
-require 'Profile.php';
-
-if (isset($geoip_city_db)) {
-	$g = new GeoIp2\Database\Reader($geoip_city_db);
+if (file_exists('config.php')) {
+	require_once 'config.php';
+} else {
+	$config = [
+		'members' => Profile::studio(),
+		'appIcon' => "Sparkle.png",
+		'ringName' => [
+			"Sparkle",
+			"   the",
+			"Updater"
+		],
+	];
 }
+
+
 
 date_default_timezone_set("UTC");
 
@@ -42,10 +37,10 @@ $m = new Mustache_Engine;
 $mode = isset($_GET["mode"]) ? $_GET["mode"] : $default_mode;
 $template = isset($_GET["template"]) ? $_GET["template"] : $default_template;
 
-if (isset($log_glob_pattern)) {
+if (!isset($config['members'])) {
 
 	// Extract the profiles -- zgrep does all the heavy lifting
-	exec("zgrep --no-filename 'osVersion=.*Sparkle/[0-9].*' " . $log_glob_pattern, $output);
+	exec("zgrep --no-filename 'osVersion=.*Sparkle/[0-9].*' " . $config['log_glob_pattern'], $output);
 	//print_r($output);	
 
 	$profiles = [];
@@ -105,21 +100,14 @@ if (isset($log_glob_pattern)) {
 
 	usort($profiles, "rtime");
 	//print_r(count($profiles));
-
-} else {
-	$profiles = Profile::studio();
-	$appIcon = "Sparkle.png";
-	$ringName = [
-"Sparkle",
-"   the",
-"Updater"
-];
-
+	$config['members'] = $profiles;
 }
 
-// When GeoIP is available, lookup info on server
-if (isset($g)) {
-	foreach ($profiles as &$p) {
+// When GeoIP is configured, lookup info on server
+if (isset($config['geoip_city_db'])) {
+	$g = new GeoIp2\Database\Reader($config['geoip_city_db']);
+
+	foreach ($config['members'] as &$p) {
 		try {
 			$r = $g->city($p->ip);
 
@@ -141,7 +129,6 @@ if (isset($g)) {
 				"continent" => "", "lat" => "",	"lon" => "", "timezone" => "",];
 		}
 		
-
 		// Generate a short summary
 		$d = array();
 		if ($p->geo['city']) $d[] = $p->geo['city'];
@@ -153,22 +140,14 @@ if (isset($g)) {
 	}
 }
 
+// If needed, set appName based on first member appName
+if (!isset($config['appName'])) {
+	$firstp = reset($config['members']);
+	$config['appName'] = $firstp->appName;
+}
 
-$firstp = reset($profiles);
-$appName = isset($appName) ? $appName : $firstp->appName;
-$ringName = isset($ringName) ? $ringName : [$appName, "", ""];
+if (!isset($config['ringName'])) {
+	$config['ringName'] = [$config['appName'], "", ""];
+}
 
-$d = [
-	"regulars" => ($mode == "regulars"),
-	"appIcon" => $appIcon,
-	"appName" => $appName,
-	"ringName" => $ringName,
-	"members" => $profiles
-];
-//print_r($d);
-
-echo $m->render(file_get_contents($template . ".html"), $d);
-
-
-
-?>
+echo $m->render(file_get_contents($template . ".html"), $config);
