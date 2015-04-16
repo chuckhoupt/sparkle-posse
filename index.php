@@ -1,4 +1,4 @@
-<? 
+<?php
 
 error_reporting(-1);
 
@@ -16,6 +16,7 @@ require_once 'Profile.php';
 
 if (file_exists('config.php')) {
 	require_once 'config.php';
+	// TODO check for glob, report error if missing
 } else {
 	$config = [
 		'members' => Profile::studio(),
@@ -41,6 +42,7 @@ if (!isset($config['members'])) {
 
 	// Extract the profiles -- zgrep does all the heavy lifting
 	exec("zgrep --no-filename 'osVersion=.*Sparkle/[0-9].*' " . $config['log_glob_pattern'], $output);
+	// TODO check for error and report
 	//print_r($output);	
 
 	$profiles = [];
@@ -143,6 +145,7 @@ if (isset($config['geoip_city_db'])) {
 // If needed, set appName based on first member appName
 if (!isset($config['appName'])) {
 	$firstp = reset($config['members']);
+	// TODO fix if no members
 	$config['appName'] = $firstp->appName;
 }
 
