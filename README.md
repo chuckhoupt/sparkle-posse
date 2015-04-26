@@ -3,7 +3,7 @@
 Visualizer for Sparkle update framework's appcast profile logs. See the
 [DEMO](http://habilis.net/sparkle-posse/demo/)
 
-![Sparkle Posse screenshot](screenshot.png)
+[![Sparkle Posse screenshot](screenshot.png)](http://habilis.net/sparkle-posse/demo/)
 
 ## Requirements
 
