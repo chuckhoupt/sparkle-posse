@@ -110,6 +110,7 @@ if (!isset($config['members'])) {
 
 // When GeoIP is configured, lookup info on server
 if (isset($config['geoip_city_db'])) {
+// TODO check for GeoIP2 package and suggest installing
 	$g = new GeoIp2\Database\Reader($config['geoip_city_db']);
 
 	foreach ($config['members'] as &$p) {

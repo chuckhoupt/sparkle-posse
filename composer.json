@@ -1,6 +1,8 @@
 {
     "require": {
-    	"mustache/mustache": "~2.5",
-        "geoip2/geoip2": "~2.0"
+    	"mustache/mustache": "~2.5"
+    },
+    "suggest": {
+        "geoip2/geoip2": "For server-side GeoIP lookup. See https://github.com/maxmind/GeoIP2-php"
     }
 }
