@@ -1,6 +1,7 @@
 # Sparkle Posse
 
-Visualizer for Sparkle update framework's appcast profile logs.
+Visualizer for Sparkle update framework's appcast profile logs. See the
+[DEMO](http://habilis.net/sparkle-posse/demo/)
 
 ![Sparkle Posse screenshot](screenshot.png)
 
