@@ -11,6 +11,8 @@ $default_template = 'posse';
 
 // Code
 
+//TODO check for autoload, and give decent message
+
 require_once 'vendor/autoload.php';
 require_once 'Profile.php';
 
@@ -19,6 +21,7 @@ if (file_exists('config.php')) {
 	// TODO check for glob, report error if missing
 } else {
 	$config = [
+		'demo' => true,
 		'members' => Profile::studio(),
 		'appIcon' => "Sparkle.png",
 		'ringName' => [
