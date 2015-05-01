@@ -45,30 +45,14 @@ conf-template.php to conf.php and setting up the path to your web logs.
 		<feTurbulence type="fractalNoise" baseFrequency="0.15" numOctaves="2"
 		result="turbulence_3" dataHfilterId="3" />
 		<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="turbulence_3" scale="20" />
-<feColorMatrix type="luminanceToAlpha" />
-		<feConvolveMatrix order="3" kernelMatrix="-1 -1 -1 0 0 0 1 2 1" />
-		<feConvolveMatrix order="3" kernelMatrix="-1 -1 -1 0 0 0 1 2 1" />
-<!--
-<feDiffuseLighting diffuseConstant="1" surfaceScale="10" result="diffuse3">
-<feDistantLight elevation="28" azimuth="90" />
-</feDiffuseLighting>
-<feComposite operator="in" in2="inputTo_3" />
--->
-<!--
-		<feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2"
-		result="turbulence_3" dataHfilterId="3" />
-		<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="turbulence_3" scale="20" />
-		<feColorMatrix type="saturate" values="0" />
 		<feColorMatrix type="luminanceToAlpha" />
-		<feConvolveMatrix order="3" kernelMatrix="-1 -2 -1 0 0 0 1 2 1" />
-		<feConvolveMatrix order="3" kernelMatrix="-1 -2 -1 0 0 0 1 2 1" />
--->
+		<feConvolveMatrix order="3" kernelMatrix="-1 -1 -1 0 0 0 1 2 1" />
+		<feConvolveMatrix order="3" kernelMatrix="-1 -1 -1 0 0 0 1 2 1" />
 	</filter>
 	</defs>
 	<desc>{{appName}} has a Posse</desc>
  	<image xlink:href="{{appIcon}}" x="170" y="150" height="500px" width="500px" filter="url(#pictureFilter)"
  		transform="rotate(-15 420 400)"/>
- 	<!--  -->
 	<image xlink:href="posse-frame.png" x="0" y="0" height="640px" width="605px"/>
 	<g font-family="Piedra, sans-serif">
 		<text x="42" y="105" font-size="60px">
