@@ -1,7 +1,9 @@
 # Sparkle Posse
 
-Visualizer for Sparkle update framework's appcast profile logs. See the
-[DEMO](http://habilis.net/sparkle-posse/demo/)
+Visualizer for Sparkle update framework's appcast profile logs.
+
+Try the [DEMO](http://habilis.net/sparkle-posse/demo/)
+and visit the [Sparkle-Posse](http://habilis.net/sparkle-posse/) page for details.
 
 [![Sparkle Posse screenshot](screenshot.png)](http://habilis.net/sparkle-posse/demo/)
 
@@ -10,6 +12,6 @@ Visualizer for Sparkle update framework's appcast profile logs. See the
 - PHP on host with zgrep
 - 1 week of web server logs
 
-## Install via Composer
+## Build
 
-curl -sS https://getcomposer.org/installer | php
+Use `make` to fetch vendor dependencies via Composer.

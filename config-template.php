@@ -4,10 +4,10 @@
 Sparkle Posse Configuration
 
 The only required configuration parameter is log_glob_pattern. The default below is
-for a typical plain vanila Apache webhost setup (such as OS X Server). The exact glob
+for a typical plain vanila Apache webhost setup (such as on OS X Server). The exact glob
 pattern will depend on your server/webhost and log-rotation setup.
 
-Sparkle Posse uses the glob pattern to z-greps the logs for Sparkle profile checks.
+Sparkle Posse uses the glob pattern to z-grep the logs for Sparkle profile checks.
 In a shell, you can test your glob pattern the same way in order to check that the
 glob lists at least 7 days:
 
