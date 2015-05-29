@@ -1,15 +1,15 @@
 <?php
 
-error_reporting(-1);
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 
+date_default_timezone_set("UTC");
 
 // 
 $default_mode = 'weekly';
 $default_template = 'posse';
 
 //$default_mode = 'regulars';
-
-// Code
 
 //TODO check for autoload, and give decent message
 
@@ -18,8 +18,11 @@ require_once 'Profile.php';
 
 if (file_exists('config.php')) {
 	require_once 'config.php';
-	// TODO check for glob, report error if missing
+	if (!isset($config)) {
+		exit("Error: log_glob_pattern not defined in config.php");
+	}
 } else {
+	// Demo config
 	$config = [
 		'demo' => true,
 		'members' => Profile::studio(),
@@ -32,10 +35,6 @@ if (file_exists('config.php')) {
 	];
 }
 
-
-
-date_default_timezone_set("UTC");
-
 $m = new Mustache_Engine;
 
 $mode = isset($_GET["mode"]) ? $_GET["mode"] : $default_mode;
@@ -43,9 +42,14 @@ $template = isset($_GET["template"]) ? $_GET["template"] : $default_template;
 
 if (!isset($config['members'])) {
 
+	// Sanity check glob pattern
+	if (! glob($config['log_glob_pattern'])) {
+		exit("Error: log pattern matches no files: " . $config['log_glob_pattern']);
+	}
+
 	// Extract the profiles -- zgrep does all the heavy lifting
-	exec("zgrep --no-filename 'osVersion=.*Sparkle/[0-9].*' " . $config['log_glob_pattern'], $output);
-	// TODO check for error and report
+	exec("zgrep --no-filename 'osVersion=.*Sparkle/[0-9].*' " . $config['log_glob_pattern'], $output, $exitcode);
+	if ($exitcode > 1) exit("Error: zgrep-ing failed with log pattern: " . $config['log_glob_pattern']);
 	//print_r($output);	
 
 	$profiles = [];
@@ -100,9 +104,10 @@ if (!isset($config['members'])) {
 	}
 
 	function rtime($a, $b) {
-		return $a->time == $b->time ? 0 : ($a->time < $b->time ? -1 : 1);
+		return $a->time == $b->time ? 0 : ($a->time > $b->time ? -1 : 1);
 	}
 
+	// Sort with most recent first
 	usort($profiles, "rtime");
 	//print_r(count($profiles));
 	$config['members'] = $profiles;
@@ -149,8 +154,7 @@ if (isset($config['geoip_city_db'])) {
 // If needed, set appName based on first member appName
 if (!isset($config['appName'])) {
 	$firstp = reset($config['members']);
-	// TODO fix if no members
-	$config['appName'] = $firstp->appName;
+	$config['appName'] = $firstp ? $firstp->appName : "No detected";
 }
 
 if (!isset($config['ringName'])) {
