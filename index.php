@@ -43,8 +43,10 @@ $template = isset($_GET["template"]) ? $_GET["template"] : $default_template;
 if (!isset($config['members'])) {
 
 	// Sanity check glob pattern
-	if (! glob($config['log_glob_pattern'])) {
-		exit("Error: log pattern matches no files: " . $config['log_glob_pattern']);
+	exec("ls " . $config['log_glob_pattern'] . " 2>&1", $lsoutput, $lsexitcode);
+	if ($lsexitcode != 0) {
+		echo("log_glob_pattern sanity check:<BR>" . implode('<BR>', $lsoutput) . "<BR>");
+		exit("Error: file matching problem in log pattern: " . $config['log_glob_pattern']);
 	}
 
 	// Extract the profiles -- zgrep does all the heavy lifting
