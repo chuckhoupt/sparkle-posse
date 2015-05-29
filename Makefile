@@ -6,7 +6,7 @@ composer.phar :
 
 sparkle-posse.xip : vendor
 	rsync -av --delete --exclude='.git*' --exclude=composer.phar --exclude=sparkle-posse.xip --exclude=config.php . /tmp/sparkle-posse
-	xip --sign 'Developer ID Installer' /tmp/sparkle-posse sparkle-posse.xip
+	xip --sign 'Developer ID Installer' --timestamp /tmp/sparkle-posse sparkle-posse.xip
 
 dist : sparkle-posse.xip
 
