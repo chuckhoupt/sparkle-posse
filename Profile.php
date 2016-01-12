@@ -15,7 +15,9 @@ function ramGB() { return floor($this->ramMB/1000); }
 function osShortVersion() { return preg_replace('/\.\d+$/', '', $this->osVersion); }
 
 function osInfo() {
-	return self::$osInfoMap[$this->osShortVersion()];
+	return isset(self::$osInfoMap[$this->osShortVersion()])
+	? self::$osInfoMap[$this->osShortVersion()]
+	: ["codeName"=>"$this->osVersion", "link"=>""];
 }
 
 function cputypeName() { return self::$cputypeMap[$this->cputype]; }
