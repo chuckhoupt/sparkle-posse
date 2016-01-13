@@ -107,6 +107,8 @@ public static $modelInfoMap = [
 "MacBook5,2" => [		"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"MacBook 13\""],
 "MacBook6,1" => [		"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"MacBook 13\""],
 "MacBook7,1" => [		"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"MacBook 13\""],
+"MacBook8,1" => [		"retina"=>FALSE, 	"proc"=>"Core M", 	"desc"=>"MacBook 12\""],
+
 "MacBookAir1,1" => [	"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"MacBook Air 13\""],
 "MacBookAir2,1" => [	"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"MacBook Air 13\""],
 "MacBookAir3,1" => [	"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"MacBook Air 11\""],
@@ -119,6 +121,7 @@ public static $modelInfoMap = [
 "MacBookAir6,2" => [	"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Air 13\""],
 "MacBookAir7,1" => [	"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Air 13\""],
 "MacBookAir7,2" => [	"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Air 13\""],
+
 "MacBookPro1,1" => [	"retina"=>FALSE, 	"proc"=>"Core i1", 	"desc"=>"MacBook Pro 15\""],
 "MacBookPro1,2" => [	"retina"=>FALSE, 	"proc"=>"Core i1", 	"desc"=>"MacBook Pro 17\""],
 "MacBookPro2,1" => [	"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"MacBook Pro 17\""],
@@ -143,13 +146,17 @@ public static $modelInfoMap = [
 "MacBookPro11,1" => [	"retina"=>TRUE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Pro 13\""],
 "MacBookPro11,2" => [	"retina"=>TRUE, 	"proc"=>"Core i7", 	"desc"=>"MacBook Pro 15\""],
 "MacBookPro11,3" => [	"retina"=>TRUE, 	"proc"=>"Core i7", 	"desc"=>"MacBook Pro 15\""],
+"MacBookPro11,4" => [	"retina"=>TRUE, 	"proc"=>"Core i7", 	"desc"=>"MacBook Pro 15\""],
+"MacBookPro11,5" => [	"retina"=>TRUE, 	"proc"=>"Core i7", 	"desc"=>"MacBook Pro 15\""],
 "MacBookPro12,1" => [	"retina"=>TRUE, 	"proc"=>"Core i5/i7", 	"desc"=>"MacBook Pro 13\""],
+
 "MacPro1,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
 "MacPro2,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
 "MacPro3,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
 "MacPro4,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
 "MacPro5,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
 "MacPro6,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Mac Pro"],
+
 "Macmini1,1" => [		"retina"=>FALSE, 	"proc"=>"Core i1", 	"desc"=>"Mac mini"],
 "Macmini2,1" => [		"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"Mac mini"],
 "Macmini3,1" => [		"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"Mac mini"],
@@ -160,9 +167,11 @@ public static $modelInfoMap = [
 "Macmini6,1" => [		"retina"=>FALSE, 	"proc"=>"Core i5", 	"desc"=>"Mac mini"],
 "Macmini6,2" => [		"retina"=>FALSE, 	"proc"=>"Core i7", 	"desc"=>"Mac mini"],
 "Macmini7,1" => [		"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"Mac mini"],
+
 "Xserve1,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Xserve"],
 "Xserve2,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Xserve"],
 "Xserve3,1" => [		"retina"=>FALSE, 	"proc"=>"Xeon", 	"desc"=>"Xserve"],
+
 "iMac4,1" => [			"retina"=>FALSE, 	"proc"=>"Core i1", 	"desc"=>"iMac 17-20\""],
 "iMac4,2" => [			"retina"=>FALSE, 	"proc"=>"Core i1", 	"desc"=>"iMac 17\""],
 "iMac5,1" => [			"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"iMac 17-20\""],
@@ -184,6 +193,9 @@ public static $modelInfoMap = [
 "iMac14,3" => [			"retina"=>FALSE, 	"proc"=>"Core i5/i7", 	"desc"=>"iMac 21.5\""],
 "iMac14,4" => [			"retina"=>FALSE, 	"proc"=>"Core i5", 	"desc"=>"iMac 21.5\""],
 "iMac15,1" => [			"retina"=>TRUE, 	"proc"=>"Core i5/i7", 	"desc"=>"iMac 27\""],
+"iMac16,1" => [			"retina"=>FALSE, 	"proc"=>"Core i5", 	"desc"=>"iMac 21.5\""],
+"iMac16,2" => [			"retina"=>TRUE, 	"proc"=>"Core i5", 	"desc"=>"iMac 21.5\""],
+"iMac17,1" => [			"retina"=>TRUE, 	"proc"=>"Core i5/i7", 	"desc"=>"iMac 27\""],
 
 "VMware7,1" => [		"retina"=>FALSE, 	"proc"=>"Core i2", 	"desc"=>"VMWare Virtual Machine"],
 ];
