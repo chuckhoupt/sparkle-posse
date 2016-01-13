@@ -52,6 +52,7 @@ public static $osInfoMap = [
 	"10.8" => ["codeName"=>"Mountain Lion", "link"=>"https://en.wikipedia.org/wiki/OS_X_Mountain_Lion#Release_history"],
 	"10.9" => ["codeName"=>"Mavericks", "link"=>"https://en.wikipedia.org/wiki/OS_X_Mavericks#Releases"],
 	"10.10" => ["codeName"=>"Yosemite", "link"=>"https://en.wikipedia.org/wiki/OS_X_Yosemite#Releases"],
+	"10.11" => ["codeName"=>"El Capitán", "link"=>"https://en.wikipedia.org/wiki/OS_X_El_Capitan#Releases"],
 ];
 
 // See: https://www.apple.com/osx/specs/
