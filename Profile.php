@@ -50,9 +50,9 @@ public static $osInfoMap = [
 	"10.6" => ["codeName"=>"Snow Leopard", "link"=>"https://en.wikipedia.org/wiki/Mac_OS_X_Snow_Leopard#Release_history"],
 	"10.7" => ["codeName"=>"Lion", "link"=>"https://en.wikipedia.org/wiki/Mac_OS_X_Lion#Release_history"],
 	"10.8" => ["codeName"=>"Mountain Lion", "link"=>"https://en.wikipedia.org/wiki/OS_X_Mountain_Lion#Release_history"],
-	"10.9" => ["codeName"=>"Mavericks", "link"=>"https://en.wikipedia.org/wiki/OS_X_Mavericks#Releases"],
-	"10.10" => ["codeName"=>"Yosemite", "link"=>"https://en.wikipedia.org/wiki/OS_X_Yosemite#Releases"],
-	"10.11" => ["codeName"=>"El Capitán", "link"=>"https://en.wikipedia.org/wiki/OS_X_El_Capitan#Releases"],
+	"10.9" => ["codeName"=>"Mavericks", "link"=>"https://en.wikipedia.org/wiki/OS_X_Mavericks#Release_history"],
+	"10.10" => ["codeName"=>"Yosemite", "link"=>"https://en.wikipedia.org/wiki/OS_X_Yosemite#Release_history"],
+	"10.11" => ["codeName"=>"El Capitán", "link"=>"https://en.wikipedia.org/wiki/OS_X_El_Capitan#Release_history"],
 ];
 
 // See: https://www.apple.com/osx/specs/
