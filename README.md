@@ -1,11 +1,11 @@
 # Sparkle Posse
 
-Visualizer for [Sparkle update framework](http://sparkle-project.org)'s appcast profile logs.
+Visualizer for [Sparkle update framework](https://sparkle-project.org)'s appcast profile logs.
 
-Try the [DEMO](http://habilis.net/sparkle-posse/demo/)
-and visit the [Sparkle-Posse](http://habilis.net/sparkle-posse/) page for details.
+Try the [DEMO](https://habilis.net/sparkle-posse/demo/)
+and visit the [Sparkle-Posse](https://habilis.net/sparkle-posse/) page for details.
 
-[![Sparkle Posse screenshot](screenshot.png)](http://habilis.net/sparkle-posse/demo/)
+[![Sparkle Posse screenshot](screenshot.png)](https://habilis.net/sparkle-posse/demo/)
 
 ## Requirements
 
