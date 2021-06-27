@@ -81,10 +81,10 @@ and setting up the path to your web logs.
 			<DIV CLASS="version" TITLE="{{appName}} {{displayVersion}}">{{displayVersion}}</DIV>
 		</A>
 		<A HREF="https://everymac.com/ultimate-mac-lookup/?search_keywords={{model}}">
-			<IMG CLASS="mac" SRC="mac/{{model}}.png" TITLE="{{modelInfo.desc}}">
+			<IMG CLASS="mac" SRC="{{modelImage}}" TITLE="{{modelInfo.desc}}">
 		</A>
 		<A HREF="{{osInfo.link}}">
-			<IMG CLASS="os" SRC="os/{{osShortVersion}}.png" TITLE="{{osVersion}} - {{osInfo.codeName}}">
+			<IMG CLASS="os" SRC="{{osImage}}" TITLE="{{osVersion}} - {{osInfo.codeName}}">
 		</A>
 		{{#modelInfo.retina}}<IMG CLASS="retina" SRC="retina-icon.png" TITLE="Retina Display">{{/modelInfo.retina}}
 		<DIV CLASS="language" TITLE="{{langName}}">{{langName}}</DIV>

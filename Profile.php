@@ -20,6 +20,13 @@ function osInfo() {
 	: ["codeName"=>"$this->osVersion", "link"=>""];
 }
 
+function osImage() {
+	$image = 'os/' . $this->osShortVersion() . '.png';
+	return file_exists($image)
+	? $image
+	: 'os/macOS.png';
+}
+
 function cputypeName() { return self::$cputypeMap[$this->cputype]; }
 
 function displayVersion() {
@@ -31,6 +38,19 @@ function modelInfo() {
 		? self::$modelInfoMap[$this->model]
 		: ["desc"=>$this->model];
 }
+
+function modelImage() {
+	$modelimage = 'mac/' . $this->model . '.png';
+	$class = preg_match('/^[A-Za-z]+/', $this->model, $matches) ? $matches[0] : "Mac";
+	$classimage = 'mac/' . $class . '.png';
+
+	return file_exists($modelimage)
+	? $modelimage
+	: ( file_exists($classimage)
+	  ? $classimage
+	  : 'mac/Mac.png');
+}
+
 function langName() {
 	return isset(self::$langNameMap[$this->lang]) ? self::$langNameMap[$this->lang] : $this->lang;	
 }
