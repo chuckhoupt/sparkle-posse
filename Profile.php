@@ -73,6 +73,12 @@ public static $osInfoMap = [
 	"10.9" => ["codeName"=>"Mavericks", "link"=>"https://en.wikipedia.org/wiki/OS_X_Mavericks#Release_history"],
 	"10.10" => ["codeName"=>"Yosemite", "link"=>"https://en.wikipedia.org/wiki/OS_X_Yosemite#Release_history"],
 	"10.11" => ["codeName"=>"El Capitán", "link"=>"https://en.wikipedia.org/wiki/OS_X_El_Capitan#Release_history"],
+	"10.12" => ["codeName"=>"Sierra", "link"=>"https://en.wikipedia.org/wiki/MacOS_Sierra#Release_history"],
+	"10.13" => ["codeName"=>"High Sierra", "link"=>"https://en.wikipedia.org/wiki/MacOS_High_Sierra#Release_history"],
+	"10.14" => ["codeName"=>"Mojave", "link"=>"https://en.wikipedia.org/wiki/MacOS_Mojave#Release_history"],
+	"10.15" => ["codeName"=>"Catalina", "link"=>"https://en.wikipedia.org/wiki/MacOS_Catalina#Release_history"],
+	"11" => ["codeName"=>"Big Sur", "link"=>"https://en.wikipedia.org/wiki/MacOS_Big_Sur#Release_history"],
+	"12" => ["codeName"=>"Monterey", "link"=>"https://en.wikipedia.org/wiki/MacOS_Monterey#Release_history"],
 ];
 
 // See: https://www.apple.com/osx/specs/
