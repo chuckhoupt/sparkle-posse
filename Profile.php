@@ -13,6 +13,7 @@ function __construct($fields = []) {
 function ramGB() { return floor($this->ramMB/1000); }
 
 function osShortVersion() { return preg_replace('/\.\d+$/', '', $this->osVersion); }
+function osMajorVersion() { return preg_replace('/\.\d+\.\d+$/', '', $this->osVersion); }
 
 function osInfo() {
 	return isset(self::$osInfoMap[$this->osShortVersion()])
@@ -21,10 +22,13 @@ function osInfo() {
 }
 
 function osImage() {
-	$image = 'os/' . $this->osShortVersion() . '.png';
-	return file_exists($image)
-	? $image
-	: 'os/macOS.png';
+	$simage = 'os/' . $this->osShortVersion() . '.png';
+	$mimage = 'os/' . $this->osMajorVersion() . '.png';
+	return file_exists($simage)
+	? $simage
+	: ( file_exists($mimage)
+	  ? $mimage
+	  : 'os/macOS.png' );
 }
 
 function cputypeName() { return self::$cputypeMap[$this->cputype]; }
