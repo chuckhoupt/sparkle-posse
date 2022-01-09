@@ -1,4 +1,4 @@
-composer.*
+composer.phar
 vendor
 config.php
 sparkle-posse.xip

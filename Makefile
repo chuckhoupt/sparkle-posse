@@ -14,4 +14,4 @@ sparkle-posse.xip : vendor
 dist : sparkle-posse.xip
 
 clean :
-	rm -rf vendor composer.lock composer.phar sparkle-posse.xip
+	rm -rf vendor composer.phar sparkle-posse.xip
