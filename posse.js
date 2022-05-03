@@ -2,12 +2,12 @@ $(document).ready(function() {
 
 $('.info:has(.address)').each(function(i, info) {
 	setTimeout(function() {
-		$.ajax('http://ip-api.com/json/'+$('.address', info).text())
+		$.ajax('https://ipapi.co/'+$('.address', info).text()+'/json/')
 		 .done(function (geo) {
 			var d = [];
 			if (geo.city) d.push(geo.city);
-			if (geo.countryCode == 'US' && geo.region) d.push(geo.region);
-			d.push((d.length == 0) ? geo.country : geo.countryCode);
+			if (geo.country_code == 'US' && geo.region_code) d.push(geo.region_code);
+			d.push((d.length == 0) ? geo.country : geo.country_code);
 			var summary = d.join(", ") + (geo.org ? ": " + geo.org : "");
 			if (! summary) summary = geo.ip;
 			var full = summary + "\n\n" + mustachio(full_description, geo);
@@ -20,17 +20,16 @@ $('.info:has(.address)').each(function(i, info) {
 });
 
 var full_description ="\
-IP: {query}\n\
+IP: {ip}\n\
 Org: {org}\n\
-ISP: {isp}\n\
-AS: {as}\n\
+ASN: {asn}\n\
 \n\
 City: {city}\n\
-Region: {regionName}\n\
-Country: {country}\n\
-Post Code: {zip}\n\
+Region: {region}\n\
+Country: {country_name}\n\
+Post Code: {postal}\n\
 \n\
-Lat/Long: {lat}, {lon}\n\
+Lat/Long: {latitude}, {longitude}\n\
 Timezone: {timezone}";
 
 function mustachio(str, object) {
