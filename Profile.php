@@ -2,6 +2,11 @@
 
 class Profile {
 
+public $model, $osVersion, $lang;
+public $cputype, $cpu64bit, $cpusubtype, $ncpu, $cpuFreqMHz, $ramMB;
+public $appName, $appVersion;
+public $ip, $time;
+
 function __construct($fields = []) {
 	foreach ($fields as $key => $value) {
 		$this->{$key} = $value;
